@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "nlwcpamobile",
-    "slug": "nlwcpamobile",
-    "scheme": "nlwcpamobile",
+    "name": "nlwcopamobile",
+    "slug": "nlwcopamobile",
+    "scheme": "nlwcopamobile",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
