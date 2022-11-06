@@ -20,6 +20,9 @@ export function Guesses({ pollId, code }: Props) {
 
   const toast = useToast();
 
+  const placement = "top";
+  const bgColor = "red.500";
+
   async function fetchGames() {
     try {
       setIsLoading(true);
@@ -27,10 +30,13 @@ export function Guesses({ pollId, code }: Props) {
       const response = await api.get(`/polls/${pollId}/games`);
       setGames(response.data.games);
     } catch (error) {
+      console.log(error);
       toast.show({
-        title: "Não foi possível listar os jogos",
-        placement: "top",
-        bgColor: "red.500",
+        title: "Oops... Tivemos um erro interno no servidor.",
+        description:
+          "Tente reiniciar o aplicativo ou entre em contato com o suporte",
+        placement,
+        bgColor,
       });
     } finally {
       setIsLoading(false);
@@ -42,8 +48,8 @@ export function Guesses({ pollId, code }: Props) {
       if (!firstTeamPoints.trim() || !secondTeamPoints.trim()) {
         return toast.show({
           title: "Informe o placar para palpitar",
-          placement: "top",
-          bgColor: "red.500",
+          placement,
+          bgColor,
         });
       }
 
@@ -54,7 +60,7 @@ export function Guesses({ pollId, code }: Props) {
 
       toast.show({
         title: "Palpite realizado com sucesso!",
-        placement: "top",
+        placement,
         bgColor: "green.500",
       });
 
@@ -63,9 +69,11 @@ export function Guesses({ pollId, code }: Props) {
       console.log(error);
 
       toast.show({
-        title: "Não foi possível enviar o palpite",
-        placement: "top",
-        bgColor: "red.500",
+        title: "Oops... Tivemos um erro interno no servidor.",
+        description:
+          "Tente reiniciar o aplicativo ou entre em contato com o suporte",
+        placement,
+        bgColor,
       });
     }
   }
