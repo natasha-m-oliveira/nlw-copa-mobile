@@ -5,11 +5,12 @@ import { Input } from "./Input";
 
 interface Props {
   code: string;
+  points?: number;
   position: "left" | "right";
   onChangeText: (value: string) => void;
 }
 
-export function Team({ code, position, onChangeText }: Props) {
+export function Team({ code, points, position, onChangeText }: Props) {
   return (
     <HStack alignItems="center">
       {position === "left" && (
@@ -17,12 +18,14 @@ export function Team({ code, position, onChangeText }: Props) {
       )}
 
       <Input
-        w={10}
+        w={12}
         h={9}
         textAlign="center"
         fontSize="xs"
         keyboardType="numeric"
+        placeholder={String(points ? points : 0)}
         onChangeText={onChangeText}
+        isReadOnly={!isNaN(points)}
       />
 
       {position === "right" && (

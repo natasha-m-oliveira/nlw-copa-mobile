@@ -68,6 +68,7 @@ export function Game({
       >
         <Team
           code={data.firstTeamCountryCode}
+          points={data.guess?.firstTeamPoints}
           position="right"
           onChangeText={setFirstTeamPoints}
         />
@@ -76,6 +77,7 @@ export function Game({
 
         <Team
           code={data.secondTeamCountryCode}
+          points={data.guess?.secondTeamPoints}
           position="left"
           onChangeText={setSecondTeamPoints}
         />
