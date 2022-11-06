@@ -40,6 +40,8 @@ export function Game({
 
   const when = dayjs(data.date).locale(ptBR).format("DD [de] MMMM [de] YYYY");
 
+  const openToPoll = dayjs("2022-11-05T23:23:20.920Z").isAfter(dayjs());
+
   return (
     <VStack
       w="full"
@@ -69,6 +71,7 @@ export function Game({
         <Team
           code={data.firstTeamCountryCode}
           points={data.guess?.firstTeamPoints}
+          openToPoll={openToPoll}
           position="right"
           onChangeText={setFirstTeamPoints}
         />
@@ -78,6 +81,7 @@ export function Game({
         <Team
           code={data.secondTeamCountryCode}
           points={data.guess?.secondTeamPoints}
+          openToPoll={openToPoll}
           position="left"
           onChangeText={setSecondTeamPoints}
         />
@@ -87,16 +91,17 @@ export function Game({
         <Button
           size="xs"
           w="full"
-          bgColor="green.500"
+          bgColor={openToPoll ? "green.500" : "gray.600"}
           mt={4}
+          isDisabled={!openToPoll}
           onPress={onGuessConfirm}
         >
           <HStack alignItems="center">
             <Text color="white" fontSize="xs" fontFamily="heading" mr={3}>
-              CONFIRMAR PALPITE
+              {openToPoll ? "CONFIRMAR PALPITE" : "TEMPO ESGOTADO"}
             </Text>
 
-            <Check color={colors.white} size={sizes[4]} />
+            {openToPoll && <Check color={colors.white} size={sizes[4]} />}
           </HStack>
         </Button>
       )}
